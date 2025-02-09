@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Classified Information</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+  <style>
+    /* Dark blue background */
+    body {
+      background-color: #001f3f;
+      margin: 0;
+      height: 100vh;
+      font-family: "Courier Prime", monospace;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Image (file "logo.png" must be in the same folder as this HTML file) */
+    .logo {
+      width: 278px;
+      height: 278px;
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+     animation: rotateImage 15s linear infinite;
+    }
+
+    /* Insert the keyframes here */
+    @keyframes rotateImage {
+      0% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      100% {
+        transform: translateX(-50%) rotate(360deg);
+      }
+    }
+
+
+    /* Header */
+    .main-text {
+      font-size: 2em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 200px;
+    }
+
+    /* Login container */
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      outline: none;
+      width: 100%;
+      max-width: 250px;
+      font-family: "Courier Prime", monospace;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Courier Prime", monospace;
+    }
+
+    /* Password displays as asterisks */
+    input[type="password"] {
+      font-family: "Courier Prime", monospace;
+      letter-spacing: 3px;
+    }
+
+    button {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      width: 100%;
+      max-width: 250px;
+      font-family: "Courier Prime", monospace;
+    }
+
+    button:hover {
+      background: white;
+      color: #001f3f;
+    }
+
+    /* Denied message container */
+    .denied-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+/* "ACCESS DENIED" message */
+    .denied-message {
+      color: red;
+      font-size: 1.8em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      animation: typing 2s steps(15, end) forwards;
+    }
+
+    /* Typing animation */
+    @keyframes typing {
+      0% { width: 0 }
+      100% { width: 15ch }
+    }
+
+    /* Cursor (same size as text, on the same line) */
+    .cursor {
+      font-size: 1.8em;
+      color: red;
+      font-weight: bold;
+      margin-left: 2px;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0 }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Image (logo.png should be in the same folder as this HTML file) -->
+  <img src="logo.webp" alt="Logo" class="logo">
+
+  <div class="main-text">CLASSIFIED INFORMATION // DELTA GREEN</div>
+
+  <div class="login-container" id="loginContainer">
+    <input type="text" id="username" placeholder="Identifier">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">Login</button>
+  </div>
+
+  <!-- Access Denied message -->
+  <div class="denied-container" id="deniedContainer">
+    <span class="denied-message" id="deniedText">
+      ACCESS DENIED<span class="cursor">|</span>
+    </span>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const loginContainer = document.getElementById("loginContainer");
+      const deniedContainer = document.getElementById("deniedContainer");
+
+      if (username !== "admin" || password !== "1234") {
+        loginContainer.style.display = "none"; // Hide login form
+        deniedContainer.style.display = "block"; // Show "Access Denied" message
+      }
+    }
+  </script>
+
+</body>
+</html>
